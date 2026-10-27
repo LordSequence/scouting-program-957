@@ -1,6 +1,7 @@
 package storage;
 import java.io.*;
 import java.io.Serializable;
+//Need to completely redo the logic of writing and reading data once TeamData format is settled.
 public class DataStore {
     public static String getData(String path){
         try{
