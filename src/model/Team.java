@@ -11,6 +11,7 @@ public class Team implements Serializable{
     private int numSeasonsPlayed;
 
     public ArrayList<ArrayList<Integer>> gameYears = new ArrayList<>();
+    public ArrayList<ArrayList<String>> gameDicts = new ArrayList<>();
 
     public Team(String name, int number, int seasons){
         this.teamName = name;
@@ -36,12 +37,26 @@ public class Team implements Serializable{
             System.out.println("You have seriously messed up my friend.");
         }
     }
+
+    public void manageDict(ArrayList<ArrayList<Integer>> masterList, ArrayList<String> dict){
+
+    }
+
+    public ArrayList<Integer> getFields(){
+        return null;
+    }
     
 
     public void addSeason(int year){
         ArrayList<Integer> gameStats = new ArrayList<>();
+        ArrayList<String> statsDict = new ArrayList<>();
         gameStats.add(year);
         gameYears.add(gameStats);
+    }
+
+    public String toString(){
+        String overview = "This is Team " + (teamNumber) + " " + (teamName) + ". They have competed in " + (numSeasonsPlayed) + "(s).";
+        return overview;
     }
 
 
