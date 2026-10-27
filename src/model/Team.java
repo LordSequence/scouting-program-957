@@ -38,8 +38,25 @@ public class Team implements Serializable{
         }
     }
 
-    public void manageDict(ArrayList<ArrayList<Integer>> masterList, ArrayList<String> dict){
-
+    public void manageDict(int entry, int year, String tag){
+        //Tag is meant to be a description of the purpose of this entry, to give users a dynamic manual as to where to 
+        //input any given field values, like autonomous score or endgame.
+        int searchYear = -1;
+        for(int i = 0; i < gameYears.size(); i++){
+            if(gameYears.get(i).get(0) == year){
+                searchYear = i;
+                break;
+            }
+        }
+        if(!(year < 0)){
+            if((entry-1) > gameYears.get(year).size()){
+            gameDicts.get(searchYear).add(tag);
+        } else {
+            gameDicts.get(searchYear).add(entry, tag);
+        }
+        } else {
+            System.out.println("You have seriously messed up my friend.");
+        }
     }
 
     public ArrayList<Integer> getFields(){
@@ -51,7 +68,9 @@ public class Team implements Serializable{
         ArrayList<Integer> gameStats = new ArrayList<>();
         ArrayList<String> statsDict = new ArrayList<>();
         gameStats.add(year);
+        statsDict.add("This is the season year (year that championship occured)");
         gameYears.add(gameStats);
+        gameDicts.add(statsDict);
     }
 
     public String toString(){
