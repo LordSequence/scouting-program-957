@@ -3,7 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JTextField;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
 import tools.Tools;
 
 public class Team implements Serializable{
@@ -15,10 +16,19 @@ public class Team implements Serializable{
     public ArrayList<ArrayList<Integer>> gameYears = new ArrayList<>();
     public ArrayList<ArrayList<String>> gameDicts = new ArrayList<>();
 
+    public static ArrayList<ArrayList<Integer>> teams = new ArrayList<>();
+    static{
+        for(int u = 0; u <= 9; u++){
+            teams.add(new ArrayList<Integer>());
+        }
+    }
+
     public Team(String name, int number, int seasons){
         this.teamName = name;
         this.teamNumber = number;
         this.numSeasonsPlayed = seasons;
+        String tempName = Integer.toString(number);
+        teams.get(Integer.valueOf(tempName.charAt(0))).add(number);
     }
 
     public void addField(int searchYear, int val, int index){
@@ -81,7 +91,6 @@ public class Team implements Serializable{
         return null;
     }
     
-
     public void addSeason(int year){
         ArrayList<Integer> gameStats = new ArrayList<>();
         ArrayList<String> statsDict = new ArrayList<>();
@@ -96,10 +105,12 @@ public class Team implements Serializable{
         String warningTwo = "This data has no recovery support. Are you absolutely sure?";
         String warningThree = "Enter \"I understand the risk of deleting a season's data\"";
         String confirmation = Tools.getInput(input);
-        for(int h = 0; h < gameYears.size(); h++){
-            if(gameYears.get(h).get(0) == year){
-                gameYears.remove(h);
-                break;
+        if(confirmation == "I understand the risk of deleting a season's data"){
+            for(int h = 0; h < gameYears.size(); h++){
+                if(gameYears.get(h).get(0) == year){
+                    gameYears.remove(h);
+                    break;
+                }
             }
         }
     }
@@ -108,9 +119,5 @@ public class Team implements Serializable{
         String overview = "This is Team " + (teamNumber) + " " + (teamName) + ". They have competed in " + (numSeasonsPlayed) + "(s).";
         return overview;
     }
-
-
-
-
     
 }
