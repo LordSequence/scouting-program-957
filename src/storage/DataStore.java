@@ -10,6 +10,7 @@ public class DataStore {
     }
 
     public static void saveData(String data, String file){
+        ObjectMapper mapper = new ObjectMapper();
         
     }
 
