@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
-//import java.lang.reflect.Array;
 import java.util.ArrayList;
+import javax.swing.JTextField;
+
+import tools.Tools;
 
 public class Team implements Serializable{
 
@@ -59,6 +61,22 @@ public class Team implements Serializable{
         }
     }
 
+    public void updateDict(){
+        for(int i = 0; i < gameYears.size(); i++){
+            if(gameYears.get(i).size() != gameDicts.get(i).size()){
+                if(gameYears.get(i).size() > gameDicts.get(i).size()){
+                    for(int a = 0; a <= gameYears.get(i).size() - gameDicts.get(i).size(); a++){
+                        gameDicts.get(i).add("NULL_FILLER");
+                    }
+                } else if(gameYears.get(i).size() < gameDicts.get(i).size()){
+                    for(int b = 0; b <= gameDicts.get(i).size() - gameYears.get(i).size(); b++){
+                        gameDicts.get(i).remove(gameDicts.get(i).size() - 1);
+                    }
+                }
+            }
+        }
+    }
+
     public ArrayList<Integer> getFields(){
         return null;
     }
@@ -71,6 +89,19 @@ public class Team implements Serializable{
         statsDict.add("This is the season year (year that championship occured)");
         gameYears.add(gameStats);
         gameDicts.add(statsDict);
+    }
+
+    public void removeSeaon(int year, JTextField input){
+        String warningOne = "Are you sure you want to delete this team's " + year + " season?";
+        String warningTwo = "This data has no recovery support. Are you absolutely sure?";
+        String warningThree = "Enter \"I understand the risk of deleting a season's data\"";
+        String confirmation = Tools.getInput(input);
+        for(int h = 0; h < gameYears.size(); h++){
+            if(gameYears.get(h).get(0) == year){
+                gameYears.remove(h);
+                break;
+            }
+        }
     }
 
     public String toString(){
