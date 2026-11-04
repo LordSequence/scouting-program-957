@@ -7,11 +7,13 @@ import java.io.File;
 public class DataStore {
     public static String getData(String path){
         return null;
+        //This needs to contain code on how to search for a specific written unqiue tag
+        //identifier to pull out a full team object instance to anayltics.
     }
 
     public static void saveData(String data, String file){
         ObjectMapper mapper = new ObjectMapper();
-        
+        //Fill this in with code to access a specific file BY NAME to write to it.
     }
 
     public static void createFile(String fileName, String type){
