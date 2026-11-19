@@ -19,6 +19,11 @@ public class Team implements Serializable{
     //where it stores a corresponding String that functions as a descriptive 
     //label of each measure.
     public ArrayList<ArrayList<Integer>> gameYears = new ArrayList<>();
+    ArrayList<Integer> zeroArray = new ArrayList<>();
+    {
+        zeroArray.add(0);
+        gameYears.add(zeroArray);
+    }
     /*Note that gameYears can only store an integer rating of quantitative data point*/
     public ArrayList<ArrayList<String>> gameDicts = new ArrayList<>();
 
@@ -44,6 +49,7 @@ public class Team implements Serializable{
         //into the teams array list based off of that result.
         String tempName = Integer.toString(number);
         teams.get(Integer.valueOf(tempName.charAt(0))).add(number);
+        gameYears.get(0).add(0, number);
     }
 
     //This is the function to add a new quantitative field into the array list for gameYears

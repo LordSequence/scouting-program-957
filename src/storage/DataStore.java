@@ -12,12 +12,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 //import model.Team;
-//Need to completely redo the logic of writing and reading data once TeamData format is settled.
+//Reminder to add a 0,0 spot for team number to help with searching for data!.
 public class DataStore {
     public static List<List<Integer>> getData(String path, int teamNum) throws StreamReadException, DatabindException, IOException{
         ObjectMapper mapper = new ObjectMapper();
         Reader reader = Files.newBufferedReader(Paths.get(path));
-        MappingIterator<List> iterator = mapper.readerFor(List.class).readValues(reader);
+        MappingIterator<List<List<Integer>>> iterator = mapper.readerFor(List.class).readValues(reader);
         List<List<Integer>> data;
         while(iterator.hasNext()){
             try {
